@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {QuestionnaireService} from "../../../services/questionnaire.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionnaireDto} from "../../../models/questionnaire.model";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {QuestionCreateDto} from "../../../models/question.model";
@@ -21,7 +21,8 @@ export class QcmManageComponent implements OnInit {
   constructor(private questionnaireService: QuestionnaireService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private router: Router) {
     this.questionForm = this.formBuilder.group({
       questionText: ['', Validators.required],
       correctOption: ['', Validators.required],
@@ -72,7 +73,11 @@ export class QcmManageComponent implements OnInit {
     this.questionnaireService.changeState(this.qcmId).subscribe({
       next: (res) => {
         this.alertService.success(res.message);
-        this.ngOnInit();
+        if (!this.qcm.isOpen) {
+          this.ngOnInit();
+        } else {
+          this.router.navigate(['dashboard']);
+        }
       },
       error: err => this.alertService.error(err.error.message)
     });
