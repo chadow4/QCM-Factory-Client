@@ -1,0 +1,34 @@
+<div class="create-questionnaire-form row formCreateQuestionnaire my-3">
+  <div class="d-flex justify-content-center align-items-center">
+    <form class="w-50 pe-2" #questionnaireF="ngForm" (ngSubmit)="questionnaireF.form.valid && onSubmit()">
+      <div class="form-title">
+        <h1 class="text-uppercase fw-bold text-center mb-4">Créer un questionnaire</h1>
+      </div>
+      <div class="form- group">
+        <input type="text" id="name" name="name" placeholder="Nom du questionnaire"
+               [(ngModel)]="qcmForm.name" required
+               class="form-control"
+               #name="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="name.errors && questionnaireF.submitted">
+        Nom du questionnaire non renseigné
+      </div>
+      <div class="form-group">
+        <input type="number" id="time" name="time" placeholder="Durée en minutes"
+               [(ngModel)]="qcmForm.time" required
+               class="form-control"
+               #time="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="time.errors && questionnaireF.submitted">
+        Durée non renseignée
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success" type="submit">Créer</button>
+      </div>
+    </form>
+  </div>
+</div>

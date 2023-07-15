@@ -1,0 +1,58 @@
+<div *ngIf="qcm" class="row">
+  <div class="head-informations d-flex align-items-center justify-content-center flex-column">
+    <h1>{{qcm.name}}</h1>
+    <p>Ouvert : {{qcm.isOpen}}</p>
+    <button (click)="changeState()" class="btn btn-success" *ngIf="!qcm.isOpen || (qcm.isOpen && !qcm.isFinished)">
+      {{ !qcm.isOpen ? 'Ouvrir le QCM' : 'Fermer le QCM' }}
+    </button>
+    <h2>Liste des questions</h2>
+    <ng-container *ngIf="qcm.questions; else noQuestions">
+      <div *ngFor="let question of qcm.questions" class="list-of-questions card p-5">
+        <p>{{question.questionText}}</p>
+        <p>{{question.correctOption}}</p>
+        <div *ngFor="let option of question.options" class="list-of-options">
+          {{option}}
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noQuestions>
+      <p class="text-muted">Aucune question disponible.</p>
+    </ng-template>
+  </div>
+
+  <button *ngIf="!addQuestion && !qcm.isOpen && !qcm.isFinished" class="btn btn-primary" (click)="addQuestion = !addQuestion">Ajouter une question</button>
+
+  <form *ngIf="addQuestion" [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="questionText">Question</label>
+      <input type="text" id="questionText" formControlName="questionText" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="correctOption">Bonne réponse</label>
+      <input type="text" id="correctOption" formControlName="correctOption" class="form-control" required>
+    </div>
+
+    <div class="form-group" formArrayName="options">
+      <label>Options</label>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let option of options.controls; let i = index;">
+          <div class="input-group">
+            <input type="text" [formControlName]="i" class="form-control" required>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-danger" (click)="removeOption(i)">
+                <i class="fas fa-trash-alt"></i> Supprimer
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button type="button" class="btn btn-primary mt-2" (click)="addOption()">
+        Ajouter une option
+      </button>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Enregistrer</button>
+  </form>
+
+</div>
