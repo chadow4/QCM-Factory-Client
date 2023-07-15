@@ -1,0 +1,38 @@
+<div class="login-form row formLogin my-3">
+  <div class="d-flex justify-content-center align-items-center">
+    <form class="w-50 pe-2" #loginF="ngForm" (ngSubmit)="loginF.form.valid && onSubmit()">
+      <div class="form-title">
+        <h1 class="text-uppercase fw-bold text-center mb-4">Connexion</h1>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="email"
+               [(ngModel)]="loginForm.email" required
+               class="form-control"
+               #email="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="email.errors && loginF.submitted">
+        Email non renseigné
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" minlength="4" placeholder="Mot de passe" [(ngModel)]="loginForm.password" required
+               class="form-control mt-1" #password="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="password.errors && loginF.submitted">
+        Mot de passe non renseigné
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success" type="submit">Connexion</button>
+      </div>
+      <div class="login-form-bottom d-flex justify-content-center">
+        <span class="me-3">Pas encore inscrit ?</span>
+        <a [routerLink]="['/register']">Inscription</a>
+      </div>
+    </form>
+
+  </div>
+
+</div>
