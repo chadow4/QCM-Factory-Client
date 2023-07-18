@@ -36,7 +36,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem(this.USER_JWT_TOKEN_KEY);
     this.isLoggedInSubject.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   public getCurrentSession(): UserJwtSessionDto {

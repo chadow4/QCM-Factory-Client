@@ -13,15 +13,15 @@ export class AlertService {
 
   public success(message: string): void {
     this.snackBar.open(message, 'OK', {
-      duration: 4000,
-      panelClass: ['success-snackbar']
+      duration: 3000,
+      panelClass: ['green-snackbar']
     });
   }
 
   public error(message: string): void {
     this.snackBar.open(message, 'OK', {
-      duration: 4000,
-      panelClass: ['error-snackbar']
+      duration: 3000,
+      panelClass: ['red-snackbar']
     });
   }
 
