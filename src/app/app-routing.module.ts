@@ -5,13 +5,20 @@ import {HomeComponent} from "./pages/home/home.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ProfileComponent} from "./pages/student/profile/profile.component";
-import {QcmListComponent} from "./pages/student/qcm-list/qcm-list.component";
+import {ModuleListComponent} from "./pages/student/module-list/module-list.component";
 import {DashboardComponent} from "./pages/prof/dashboard/dashboard.component";
 import {QcmComponent} from "./pages/student/qcm/qcm.component";
 import {QcmResultComponent} from "./pages/prof/qcm-result/qcm-result.component";
 import {QcmManageComponent} from "./pages/prof/qcm-manage/qcm-manage.component";
 import {QcmCreateComponent} from "./pages/prof/qcm-create/qcm-create.component";
-import {QcmFinishedGuard} from "./guard/qcmFinishedGuard-guard";
+import {QcmFinishedGuard} from "./guard/qcmFinished-guard";
+import {DisconnectedGuard} from "./guard/disconnected-guard";
+import {ModuleCreateComponent} from "./pages/prof/module-create/module-create.component";
+import {ModuleComponent} from "./pages/student/module/module.component";
+import {ModuleManageComponent} from "./pages/prof/module-manage/module-manage.component";
+import {ConnectedGuard} from "./guard/connected-guard";
+import {StudentGuard} from "./guard/student-guard";
+import {ProfGuard} from "./guard/prof-guard";
 
 const routes: Routes = [
   {
@@ -26,40 +33,63 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [DisconnectedGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [DisconnectedGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [ConnectedGuard]
   },
   {
-    path: 'qcm/list',
-    component: QcmListComponent
+    path: 'module/list',
+    component: ModuleListComponent,
+    canActivate: [ConnectedGuard,StudentGuard]
   },
   {
-    path: 'qcm/create',
-    component: QcmCreateComponent
+    path: 'module/create',
+    component: ModuleCreateComponent,
+    canActivate: [ConnectedGuard,ProfGuard]
+  },
+  {
+    path: 'module/:id',
+    component: ModuleComponent,
+    canActivate: [ConnectedGuard,StudentGuard]
+  },
+  {
+    path: 'module/:id/manage',
+    component: ModuleManageComponent,
+    canActivate: [ConnectedGuard,ProfGuard]
+  },
+  {
+    path: 'qcm/:moduleId/create',
+    component: QcmCreateComponent,
+    canActivate: [ConnectedGuard,ProfGuard]
   },
   {
     path: 'qcm/:id',
-    component: QcmComponent
+    component: QcmComponent,
+    canActivate: [ConnectedGuard,StudentGuard]
   },
   {
     path: 'qcm/:id/results',
-    component: QcmResultComponent
+    component: QcmResultComponent,
+    canActivate: [ConnectedGuard,ProfGuard]
   },
   {
     path: 'qcm/:id/manage',
     component: QcmManageComponent,
-    canActivate: [QcmFinishedGuard]
+    canActivate: [QcmFinishedGuard,ConnectedGuard,ProfGuard],
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [ConnectedGuard,ProfGuard]
   },
   {
     path: '**',
