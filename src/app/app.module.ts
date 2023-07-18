@@ -17,12 +17,15 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { ProfileComponent } from './pages/student/profile/profile.component';
-import { QcmListComponent } from './pages/student/qcm-list/qcm-list.component';
+import { ModuleListComponent } from './pages/student/module-list/module-list.component';
 import { QcmComponent } from './pages/student/qcm/qcm.component';
 import { DashboardComponent } from './pages/prof/dashboard/dashboard.component';
 import { QcmCreateComponent } from './pages/prof/qcm-create/qcm-create.component';
 import { QcmResultComponent } from './pages/prof/qcm-result/qcm-result.component';
 import { QcmManageComponent } from './pages/prof/qcm-manage/qcm-manage.component';
+import { ModuleCreateComponent } from './pages/prof/module-create/module-create.component';
+import { ModuleManageComponent } from './pages/prof/module-manage/module-manage.component';
+import {ModuleComponent} from './pages/student/module/module.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,15 @@ import { QcmManageComponent } from './pages/prof/qcm-manage/qcm-manage.component
     RegisterComponent,
     HeaderComponent,
     ProfileComponent,
-    QcmListComponent,
+    ModuleListComponent,
     QcmComponent,
     DashboardComponent,
     QcmCreateComponent,
     QcmResultComponent,
-    QcmManageComponent
+    QcmManageComponent,
+    ModuleCreateComponent,
+    ModuleManageComponent,
+    ModuleComponent
   ],
   imports: [
     BrowserModule,

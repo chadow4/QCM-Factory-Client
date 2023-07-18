@@ -4,6 +4,7 @@ import {UserDto} from "./user.model";
 export interface QuestionnaireCreateDto {
   name: string;
   time: number;
+  moduleId: number;
 }
 
 export interface QuestionnaireDeleteDto {

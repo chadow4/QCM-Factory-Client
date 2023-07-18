@@ -6,7 +6,7 @@
       {{ !qcm.isOpen ? 'Ouvrir le QCM' : 'Fermer le QCM' }}
     </button>
     <h2>Liste des questions</h2>
-    <ng-container *ngIf="qcm.questions; else noQuestions">
+    <div *ngIf="qcm.questions?.length != 0 else noQuestions">
       <div *ngFor="let question of qcm.questions" class="list-of-questions card p-5">
         <p>{{question.questionText}}</p>
         <p>{{question.correctOption}}</p>
@@ -14,15 +14,16 @@
           {{option}}
         </div>
       </div>
-    </ng-container>
+    </div>
     <ng-template #noQuestions>
       <p class="text-muted">Aucune question disponible.</p>
     </ng-template>
+    <button *ngIf="!addQuestion && !qcm.isOpen && !qcm.isFinished" class="btn btn-primary col-auto" (click)="addQuestion = !addQuestion">Ajouter une question</button>
   </div>
-
-  <button *ngIf="!addQuestion && !qcm.isOpen && !qcm.isFinished" class="btn btn-primary" (click)="addQuestion = !addQuestion">Ajouter une question</button>
-
+  <i class="fa-solid fa-plus"></i>
   <form *ngIf="addQuestion" [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+    <i class="fas fa-camera"></i>
+
     <div class="form-group">
       <label for="questionText">Question</label>
       <input type="text" id="questionText" formControlName="questionText" class="form-control" required>

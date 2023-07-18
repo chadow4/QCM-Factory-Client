@@ -1,0 +1,29 @@
+<div *ngIf="module" class="row d-flex align-items-center justify-content-center text-center border-3">
+  <h1>Nom du Module : <span class="fw-bold">{{module.name}}</span></h1>
+  <h2 class="badge bg-info p-2 col-auto">Responsable : <span
+    class="fw-bold">{{module.author.firstname}} {{module.author.lastname}}</span></h2>
+
+  <h3>Liste des Questionnaires : </h3>
+
+  <div *ngIf="module.questionnaire?.length != 0; else notfound" class="row">
+  <div class="col-12 col-md-6 col-lg-4" *ngFor="let qcm of module.questionnaire">
+    <div class="card m-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ qcm.name }}</h5>
+        <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
+        <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'results']" class="btn btn-primary">Voir le résultat</a>
+        <a *ngIf="!qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'manage']" class="btn btn-primary">Gérer</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <ng-template #notfound>
+    <p class="text-info">Aucun QCM n'a été trouvé pour ce Module</p>
+  </ng-template>
+
+  <a [routerLink]="['/qcm',module.id,'create']" class="btn btn-primary col-auto">Créer un QCM</a>
+
+
+</div>

@@ -1,5 +1,6 @@
 import {ResultDto} from "./result.model";
 import {QuestionnaireDto} from "./questionnaire.model";
+import {ModuleDto} from "./module.model";
 
 export interface UserCreateDto {
     firstname: string;
@@ -21,8 +22,8 @@ export interface UserDto {
   lastname: string;
   email: string;
   role: string;
-  questionnaires?: QuestionnaireDto[];
-  results?: ResultDto[];
+  myModules?: ModuleDto[];
+  myResults?: ResultDto[];
 }
 export interface UserDeleteDto {
   id: number;

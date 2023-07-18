@@ -36,8 +36,13 @@ export class QcmManageComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.qcmId = Number(params.get('id'));
     });
-    this.questionnaireService.getQuestionnaireById(this.qcmId).subscribe(res => {
-      this.qcm = res;
+    this.questionnaireService.getQuestionnaireById(this.qcmId).subscribe({
+      next: (res) => {
+        this.qcm = res;
+      },
+      error: (err) => {
+        this.router.navigate(['/dashboard']).then(() => this.alertService.error(err.error.message));
+      }
     });
 
   }
@@ -76,7 +81,7 @@ export class QcmManageComponent implements OnInit {
         if (!this.qcm.isOpen) {
           this.ngOnInit();
         } else {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/qcm', this.qcmId, 'results']);
         }
       },
       error: err => this.alertService.error(err.error.message)

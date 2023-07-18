@@ -1,21 +1,19 @@
 <div *ngIf="myInfos" class="row text-center align-items-center justify-content-center">
   <h1 class="my-3">Dashboard Professeur</h1>
   <h2 class="my-3 fw-bold">Bonjour {{myInfos.firstname}}</h2>
-  <h3 class="my-3">Liste de vos QCM :</h3>
-  <span *ngIf="!myInfos.questionnaires">Vous n'avez encore créé aucun QCM</span>
-  <div *ngIf="myInfos.questionnaires">
-    <div class="row align-items-center justify-content-center" *ngFor="let qcm of myInfos.questionnaires">
-      <div class="card my-3 col-12 col-md-4">
+  <h3 class="my-3">Liste de vos Modules :</h3>
+  <p class="text-info" *ngIf="myInfos.myModules?.length === 0">Vous n'avez encore créé aucun Modules</p>
+  <div *ngIf="myInfos.myModules">
+    <div class="row align-items-center justify-content-center" *ngFor="let module of myInfos.myModules">
+      <div class="card my-3 col-12 col-md-3 col-lg-2">
         <div class="card-body">
-          <h5 class="card-title">{{qcm.name}}</h5>
-          <p class="card-text">Ouvert :{{qcm.isOpen}}</p>
-          <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id,'results']" class="btn btn-primary">Voir le résultat</a>
-          <a *ngIf="!qcm.isFinished" [routerLink]="['/qcm', qcm.id,'manage']" class="btn btn-primary">Gérer</a>
+          <h5 class="card-title">{{module.name}}</h5>
+          <a [routerLink]="['/module', module.id,'manage']" class="btn btn-primary">Gérer le module</a>
         </div>
       </div>
     </div>
   </div>
   <div class="my-4">
-    <a [routerLink]="['/qcm/create']" class="btn btn-primary col-auto">Créer un QCM</a>
+    <a [routerLink]="['/module/create']" class="btn btn-primary col-auto">Créer un Nouveau Module</a>
   </div>
 </div>
