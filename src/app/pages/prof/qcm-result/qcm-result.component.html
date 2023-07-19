@@ -1,1 +1,23 @@
-<p>qcm-result works!</p>
+<div class="container py-5">
+  <h1 class="text-center">Résultat du Questionnaire</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Note</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let result of results">
+        <th scope="row">{{result.id}}</th>
+        <td>{{result.student?.lastname}}</td>
+        <td>{{result.student?.firstname}}</td>
+        <td>{{result.mark}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
