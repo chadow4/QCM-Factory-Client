@@ -1,37 +1,54 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">QCM FACTORY</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['']" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="!loggedIn" class="nav-link" href="#" [routerLink]="['login']">Connexion</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="!loggedIn" class="nav-link" [routerLink]="['register']" href="#">Insription</a>
-        </li>
-        <li *ngIf="loggedIn" class="nav-item">
-          <a (click)="logout()" class="nav-link" href="#">Deconnexion</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="loggedIn && !isProf" class="nav-link" [routerLink]="['profile']" href="#">Profil</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="loggedIn && !isProf" class="nav-link" [routerLink]="['qcm/list']" href="#">Liste des QCM</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="loggedIn && isProf" class="nav-link" [routerLink]="['dashboard']" href="#">Dashboard</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<nav class="navbar navbar-expand-md navbar-light bg-light py-4">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" [routerLink]="['']">
+      <span class="ml-3 font-weight-bold"><i class="fa-regular fa-clipboard"></i> QCM FACTORY</span>
+    </a>
+    <a class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+    <div class="offcanvas offcanvas-end" id="navbarOffcanvas" tabindex="-1" aria-labelledby="navbarOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title mt-2" id="navbarOffcanvasLabel">Navigation</h5>
+        <button type="button" class="btn-close text-reset me-1 mt-1" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex justify-content-start justify-content-md-end">
+        <ul class="navbar-nav gap-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span class="d-inline-block"><i class="fas fa-home"></i></span>
+              Accueil
+            </a>
+          </li>
+          <li *ngIf="loggedIn && isProf" class="nav-item">
+            <a class="nav-link" [routerLink]="['dashboard']" data-bs-dismiss="offcanvas">
+              <span class="d-inline-block"><i class="fas fa-spa"></i></span>
+              Dashboard Professeur
+            </a>
+          </li>
+          <li *ngIf="loggedIn && !isProf" class="nav-item">
+            <a class="nav-link" href="#" data-bs-dismiss="offcanvas">
+              <span class="d-inline-block"><i class="far fa-user"></i></span>
+              Mon compte
+            </a>
+          </li>
+          <li *ngIf="loggedIn" class="nav-item">
+            <a class="nav-link" href="" (click)="logout()" data-bs-dismiss="offcanvas">
+              <span class="d-inline-block"><i class="fa fa-sign-out"></i></span>
+              Deconnexion
+            </a>
+          </li>
+          <li *ngIf="!loggedIn" class="nav-item">
+          <a class="nav-link" [routerLink]="['login']" data-bs-dismiss="offcanvas">
+            Connexion
+          </a>
+          </li>
+          <li *ngIf="!loggedIn" class="nav-item">
+            <a class="nav-link" [routerLink]="['register']" data-bs-dismiss="offcanvas">
+              Inscription
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
