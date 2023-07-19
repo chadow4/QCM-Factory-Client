@@ -21,24 +21,34 @@ html{
 
 
 .green-snackbar {
-  background: rgb(65, 252, 134)!important;
   color: white;
-}
-
-.green-snackbar button {
-  background-color: rgb(65, 252, 134);
-  color: white !important;
-  border: none;
+  font-weight: bold !important;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .red-snackbar {
-  background: #F44336;
   color: white;
+  font-weight: bold !important;
   position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
+
+.green-snackbar button {
+  background-color: rgb(10, 132, 7);
+  color: white !important;
+  border: none;
+  font-weight: bold;
+}
+
 
 .red-snackbar button {
   background-color: #F44336;
   color: white !important;
   border: none;
+}
+.mat-mdc-snack-bar-label mdc-snackbar__label {
+  font-weight: bold !important;
 }
