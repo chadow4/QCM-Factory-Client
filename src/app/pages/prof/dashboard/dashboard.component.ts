@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo().subscribe(res => {
       this.myInfos = res;
-      console.log(this.myInfos)
     });
   }
 
