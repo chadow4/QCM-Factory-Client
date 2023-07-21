@@ -1,1 +1,32 @@
-<p>modulel works!</p>
+<div class="container">
+  <div *ngIf="module" class="row text-center justify-content-center align-items-center">
+    <h1>Nom du Module : <span class="fw-bold">{{module.name}}</span></h1>
+    <h2 class="badge bg-info p-2 col-auto">Responsable : <span
+      class="fw-bold">{{module.author.firstname}} {{module.author.lastname}}</span></h2>
+    <h3>Liste des Questionnaires : </h3>
+  </div>
+  <div *ngIf="module.questionnaire?.length != 0; else notfound"
+       class="row text-center align-items-center justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+    <div class="col" *ngFor="let qcm of module.questionnaire">
+      <div *ngIf="qcm.isOpen || qcm.isFinished" class="card m-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ qcm.name }}</h5>
+          <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
+          <a *ngIf="qcm.isOpen" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Faire Qcm</a>
+          <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Voir vos résultat</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notfound>
+    <p class="text-info text-center">Aucun QCM n'a été trouvé pour ce Module</p>
+  </ng-template>
+
+</div>
+
+
+
+
+
