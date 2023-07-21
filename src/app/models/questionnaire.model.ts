@@ -1,5 +1,6 @@
 import {QuestionDto} from "./question.model";
 import {UserDto} from "./user.model";
+import {ModuleDto} from "./module.model";
 
 export interface QuestionnaireCreateDto {
   name: string;
@@ -22,7 +23,7 @@ export interface QuestionnaireDto {
 
   isFinished: boolean;
 
-  author?: UserDto;
+  module?: ModuleDto;
 
   questions?: QuestionDto[];
 }

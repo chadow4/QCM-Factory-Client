@@ -26,6 +26,12 @@
             </a>
           </li>
           <li *ngIf="loggedIn && !isProf" class="nav-item">
+            <a class="nav-link" [routerLink]="['module/list']" data-bs-dismiss="offcanvas">
+              <span class="d-inline-block"><i class="fas fa-spa"></i></span>
+              Liste des Cours
+            </a>
+          </li>
+          <li *ngIf="loggedIn && !isProf" class="nav-item">
             <a class="nav-link" href="#" data-bs-dismiss="offcanvas">
               <span class="d-inline-block"><i class="far fa-user"></i></span>
               Mon compte
