@@ -1,1 +1,62 @@
-<p>qcm works!</p>
+<div class="container">
+  <div *ngIf="!gameStarted && !isFinished" class="row">
+    <h1 class="text-center">QCM</h1>
+    <div class="alert alert-primary col-md-10 m-auto my-4"><span class="fw-bold">Informations Importante</span> :
+      <ul>
+        <li>Lorsque vous passez à la question suivante et que vous la validez, votre réponse précédente est enregistrée.</li>
+        <li>Si vous actualisez la page ou vous déconnectez et que vous revenez sur le questionnaire, vous serez ramené à la question suivant celle que vous avez validée avec le temps restant affiché.
+        </li>
+        <li>Vous avez la possibilité de revenir en arrière autant de fois que vous le souhaitez, tant que vous êtes dans le temps imparti.
+        </li>
+        <li>Si vous ne parvenez pas à terminer le questionnaire avant la fin du temps imparti, seules les réponses que vous avez validées seront prises en compte.
+        </li>
+        <li>Les questions répondues seront indiquées en bleu en temps réel..
+        </li>
+      </ul>
+    </div>
+    <button (click)="startGame()" type="button" class="btn btn-primary col col-md-4 m-auto">Commencer le QCM</button>
+  </div>
+
+
+  <form class="card p-5" *ngIf="!isFinished && gameStarted" (ngSubmit)="goToNext()">
+    <h2 class="fw-bold">Question {{currentQuestionIndex + 1 }}: {{questions[currentQuestionIndex].questionText}}</h2>
+    <h3 class="mt-2">Temps restant : {{ minutes }}:{{ seconds | number: '2.0' }}</h3>
+
+    <div class="my-2" *ngFor="let option of questions[currentQuestionIndex].options">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" [value]="option"
+               [(ngModel)]="myResponses[currentQuestionIndex]"
+               name="option" id="option{{option}}">
+        <label class="form-check-label" for="option{{option}}">{{option}}</label>
+
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <a class="btn btn-outline-info me-2" (click)="goToPrevious()">⏮️ Question Précédente</a>
+      <button type="submit" class="btn btn-outline-info">
+        {{ currentQuestionIndex + 1 < totalQuestions ? "Question suivante ⏭️" : "Terminer le QCM" }}
+      </button>
+
+    </div>
+    <div class="mt-3 d-flex">
+      <div *ngFor="let myResponse of myResponses let i = index" class="parent-div mt-3">
+        <span (click)="goToQuestion(i)" class="ms-1 alert list-response"
+              [ngClass]="!myResponse ? 'alert alert-danger' : 'alert alert-info'"
+              [ngStyle]="{ 'border': i === currentQuestionIndex ? '2px solid black' : '' }">
+          Question {{i + 1}}
+        </span>
+      </div>
+    </div>
+    <em class="mt-4"><b>NB</b> : Les questions qui sont répondues apparaissent en bleu (il es biensur possible de modifier leurs valeurs)</em>
+  </form>
+
+
+  <div *ngIf="isFinished" class="row">
+    <h1>Qcm fini</h1>
+    <button (click)="sendResult()" class="btn btn-success">Envoyer résultat</button>
+
+    </div>
+
+
+  </div>
