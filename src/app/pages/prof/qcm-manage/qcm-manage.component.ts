@@ -71,6 +71,7 @@ export class QcmManageComponent implements OnInit {
         },
         error: err => this.alertService.error(err.error.message)
       });
+      this.questionForm.reset();
     }
   }
 

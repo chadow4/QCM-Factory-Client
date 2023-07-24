@@ -3,8 +3,13 @@
     <h1>Nom du Module : <span class="fw-bold">{{module.name}}</span></h1>
     <h2 class="badge bg-info p-2 col-auto">Responsable : <span
       class="fw-bold">{{module.author.firstname}} {{module.author.lastname}}</span></h2>
+    <h3>Sections: </h3>
+    <div *ngIf="module.sections.length; else notFoundSection">
+
+    </div>
     <h3>Liste des Questionnaires : </h3>
   </div>
+
   <div *ngIf="module?.questionnaire?.length; else notfound"
        class="row text-center align-items-center justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
 
@@ -22,6 +27,10 @@
 
   <ng-template #notfound>
     <p class="text-info text-center">Aucun QCM n'a été trouvé pour ce Module</p>
+  </ng-template>
+
+  <ng-template #notFoundSection>
+    <p class="text-info text-center">Aucune Section n'a été trouvé pour ce Module</p>
   </ng-template>
 
 </div>

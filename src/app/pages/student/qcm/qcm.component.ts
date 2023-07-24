@@ -165,5 +165,6 @@ export class QcmComponent implements OnInit {
     this.resultService.createResult(result).subscribe((result) => {
       this.router.navigate(['/module', this.moduleId]).then(() => this.alertService.success("Votre résultat a été enregistré avec succès !"));
     });
+    this.clearLocalStorage();
   }
 }
