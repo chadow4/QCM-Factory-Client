@@ -1,0 +1,9 @@
+<input class="form-control search-input col-12" type="text" [formControl]="searchControl" placeholder="Rechercher...">
+<div class="results bg-white border p-2 mt-2 position-absolute col-8 col-md-2" *ngIf=" searchResults && searchResults.length > 0 && searchControl.value != ''">
+  <span>Résultats : </span>
+  <div *ngFor="let result of searchResults">
+    <a class="card my-3 p-2 cursor-pointer" (click)="goToModule(result.id)">{{ result.name }}</a>
+    <hr>
+  </div>
+</div>
+

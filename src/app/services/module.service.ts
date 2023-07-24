@@ -19,6 +19,10 @@ export class ModuleService {
   public getModuleById(id: number): Observable<ModuleDto> {
     return this.http.get<ModuleDto>(this.module_API + id);
   }
+
+  public findAllByKeyword(keyword: string): Observable<ModuleDto[]> {
+    return this.http.get<ModuleDto[]>(this.module_API + 'search?keyword=' + keyword);
+  }
   public createModule(module: ModuleCreateDto): Observable<any> {
     return this.http.post<ModuleDto>(this.module_API, module);
   }
