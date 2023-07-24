@@ -1,60 +1,62 @@
-<div class="register-form row formRegister my-3">
-  <div class="d-flex justify-content-center align-items-center">
-    <form class="w-50 pe-2" #registerF="ngForm" (ngSubmit)="registerF.form.valid && onSubmit()">
-      <div class="form-title">
-        <h1 class="text-uppercase fw-bold text-center mb-4">Inscription</h1>
-      </div>
-      <div class="form-group">
-        <input type="text" id="firstname" name="firstname" placeholder="Prénom"
-               [(ngModel)]="registerForm.firstname" required
-               class="form-control"
-               #firstname="ngModel">
-      </div>
-      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
-           role="alert"
-           *ngIf="firstname.errors && registerF.submitted">
-        Prénom non renseigné
-      </div>
-      <div class="form-group">
-        <input type="text" id="lastname" name="lastname" placeholder="Nom de famille"
-               [(ngModel)]="registerForm.lastname" required
-               class="form-control"
-               #lastname="ngModel">
-      </div>
-      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
-           role="alert"
-           *ngIf="lastname.errors && registerF.submitted">
-        Nom de famille non renseigné
-      </div>
-      <div class="form-group">
-        <input type="email" id="email" name="email" placeholder="Email"
-               [(ngModel)]="registerForm.email" required
-               class="form-control"
-               #email="ngModel">
-      </div>
-      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
-           role="alert"
-           *ngIf="email.errors && registerF.submitted">
-        Email non renseigné
-      </div>
-      <div class="form-group">
-        <input type="password" id="password" name="password" minlength="4" placeholder="Mot de passe"
-               [(ngModel)]="registerForm.password" required
-               class="form-control mt-1"
-               #password="ngModel">
-      </div>
-      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
-           role="alert"
-           *ngIf="password.errors && registerF.submitted">
-        Mot de passe non renseigné
-      </div>
-      <div class="form-group text-center">
-        <button class="btn btn-success" type="submit">Inscription</button>
-      </div>
-      <div class="register-form-bottom d-flex justify-content-center">
-        <span class="me-3">Déjà inscrit ?</span>
-        <a [routerLink]="['/login']">Connexion</a>
-      </div>
-    </form>
+<div class="container">
+  <div class="register-form row formRegister my-3 align-items-center justify-content-center">
+    <div class="col-lg-4 col-md-8 col-sm-10">
+      <form class="card rounded p-5" #registerF="ngForm" (ngSubmit)="registerF.form.valid && onSubmit()">
+        <div class="form-title">
+          <h1 class="text-uppercase fw-bold text-center mb-4">Inscription</h1>
+        </div>
+        <div class="form-group">
+          <input type="text" id="firstname" name="firstname" placeholder="Prénom"
+                 [(ngModel)]="registerForm.firstname" required
+                 class="form-control"
+                 #firstname="ngModel">
+        </div>
+        <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+             role="alert"
+             *ngIf="firstname.errors && registerF.submitted">
+          Prénom non renseigné
+        </div>
+        <div class="form-group">
+          <input type="text" id="lastname" name="lastname" placeholder="Nom de famille"
+                 [(ngModel)]="registerForm.lastname" required
+                 class="form-control"
+                 #lastname="ngModel">
+        </div>
+        <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+             role="alert"
+             *ngIf="lastname.errors && registerF.submitted">
+          Nom de famille non renseigné
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Email"
+                 [(ngModel)]="registerForm.email" required
+                 class="form-control"
+                 #email="ngModel">
+        </div>
+        <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+             role="alert"
+             *ngIf="email.errors && registerF.submitted">
+          Email non renseigné
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" name="password" minlength="4" placeholder="Mot de passe"
+                 [(ngModel)]="registerForm.password" required
+                 class="form-control"
+                 #password="ngModel">
+        </div>
+        <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+             role="alert"
+             *ngIf="password.errors && registerF.submitted">
+          Mot de passe non renseigné
+        </div>
+        <div class="form-group text-center my-3">
+          <button class="btn btn-success" type="submit">Inscription</button>
+        </div>
+        <div class="register-form-bottom d-flex justify-content-center">
+          <span class="me-3">Déjà inscrit ?</span>
+          <a [routerLink]="['/login']">Connexion</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
