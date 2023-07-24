@@ -26,6 +26,8 @@ import { QcmManageComponent } from './pages/prof/qcm-manage/qcm-manage.component
 import { ModuleCreateComponent } from './pages/prof/module-create/module-create.component';
 import { ModuleManageComponent } from './pages/prof/module-manage/module-manage.component';
 import {ModuleComponent} from './pages/student/module/module.component';
+import { QcmMyresultComponent } from './pages/student/qcm-myresult/qcm-myresult.component';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {ModuleComponent} from './pages/student/module/module.component';
     QcmManageComponent,
     ModuleCreateComponent,
     ModuleManageComponent,
-    ModuleComponent
+    ModuleComponent,
+    QcmMyresultComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

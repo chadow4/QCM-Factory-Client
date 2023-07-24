@@ -19,6 +19,8 @@ import {ModuleManageComponent} from "./pages/prof/module-manage/module-manage.co
 import {ConnectedGuard} from "./guard/connected-guard";
 import {StudentGuard} from "./guard/student-guard";
 import {ProfGuard} from "./guard/prof-guard";
+import {QcmMyresultComponent} from "./pages/student/qcm-myresult/qcm-myresult.component";
+import {QcmNotFinishedGuard} from "./guard/qcmNotFinished-guard";
 
 const routes: Routes = [
   {
@@ -74,12 +76,17 @@ const routes: Routes = [
   {
     path: 'qcm/:id',
     component: QcmComponent,
-    canActivate: [ConnectedGuard,StudentGuard]
+    canActivate: [QcmFinishedGuard,ConnectedGuard,StudentGuard]
   },
   {
     path: 'qcm/:id/results',
     component: QcmResultComponent,
-    canActivate: [ConnectedGuard,ProfGuard]
+    canActivate: [QcmNotFinishedGuard,ConnectedGuard,ProfGuard]
+  },
+  {
+    path: 'qcm/:id/myresult', // a check
+    component: QcmMyresultComponent,
+    canActivate: [QcmNotFinishedGuard,ConnectedGuard,StudentGuard]
   },
   {
     path: 'qcm/:id/manage',
