@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light py-4">
-  <div class="container">
+<nav class="navbar navbar-expand-md navbar-light py-4">
+  <div class="container-fluid">
     <a class="navbar-brand d-flex align-items-center" [routerLink]="['']">
       <span class="ml-3 font-weight-bold"><i class="fa-regular fa-clipboard"></i> QCM FACTORY</span>
     </a>
@@ -12,7 +12,8 @@
         <button type="button" class="btn-close text-reset me-1 mt-1" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body d-flex justify-content-start justify-content-md-end">
-        <ul class="navbar-nav gap-3">
+        <ul class="navbar-nav">
+          <div class="d-flex flex-column flex-md-row">
           <li class="nav-item">
             <a class="nav-link active" href="#">
               <span class="d-inline-block"><i class="fas fa-home"></i></span>
@@ -53,7 +54,10 @@
               Inscription
             </a>
           </li>
+            </div>
+          <app-search class="my-5 my-md-0 mx-0 ms-md-5" *ngIf="loggedIn"></app-search>
         </ul>
+
       </div>
     </div>
   </div>

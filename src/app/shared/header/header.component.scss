@@ -1,0 +1,10 @@
+.container-fluid{
+  margin: 0 12em !important;
+}
+
+@media (max-width: 992px) {
+  .container-fluid{
+    margin: 0 !important;
+  }
+}
+
