@@ -23,7 +23,7 @@ export interface QuestionnaireDto {
 
   isFinished: boolean;
 
-  module?: ModuleDto;
+  module: ModuleDto;
 
-  questions?: QuestionDto[];
+  questions: QuestionDto[];
 }

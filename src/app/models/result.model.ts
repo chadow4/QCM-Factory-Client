@@ -9,6 +9,6 @@ export interface ResultDto {
   id: number;
   mark: number;
   responses: string[];
-  questionnaire?: QuestionnaireDto;
-  student?: UserDto;
+  questionnaire: QuestionnaireDto;
+  student: UserDto;
 }

@@ -48,10 +48,11 @@ export class QcmComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-
       this.qcmId = params['id'];
-      this.questionnaireService.getQuestionnaireById(this.qcmId).subscribe((questionnaire) => {
-        const {questions, module, time} = questionnaire || {};
+    });
+    this.questionnaireService.getQuestionnaireById(this.qcmId).subscribe(  {
+      next: (res) => {
+        const {questions, module, time} = res || {};
         if (questions) {
           this.questions = questions;
           this.minutes = time;
@@ -60,9 +61,14 @@ export class QcmComponent implements OnInit {
 
           this.handleLocalStorage();
         }
-
-      });
+      },
+      error: (err) => {
+        history.back();
+        this.alertService.error(err.error.message);
+      }
     });
+
+
 
   }
 
