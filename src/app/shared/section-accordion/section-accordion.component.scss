@@ -1,0 +1,54 @@
+.item {
+  border: 2px solid #222222;
+  padding: 16px;
+  border-radius: 8px;
+  will-change: transform;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.item:hover {
+  border-color: #3a90f2;
+  transform: scale(1.025);
+}
+
+.item svg {
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s ease-in-out;
+}
+
+.item:hover svg {
+  color: #7e3af2;
+  fill: red;
+}
+
+.item a {
+  all: unset;
+  margin-left: auto;
+  background-color: #3a90f2;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+@media screen and (max-width: 992px) {
+  .item a {
+    margin: auto;
+  }
+}
+
+
+
+
+.item .filedata {
+  display: flex;
+  gap: 4px;
+  font-size: 12px;
+  margin-top: 8px;
+  color: #888888;
+}

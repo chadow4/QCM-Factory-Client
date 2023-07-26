@@ -28,6 +28,7 @@ import { ModuleManageComponent } from './pages/prof/module-manage/module-manage.
 import {ModuleComponent} from './pages/student/module/module.component';
 import { QcmMyresultComponent } from './pages/student/qcm-myresult/qcm-myresult.component';
 import { SearchComponent } from './shared/search/search.component';
+import { SectionAccordionComponent } from './shared/section-accordion/section-accordion.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SearchComponent } from './shared/search/search.component';
     ModuleManageComponent,
     ModuleComponent,
     QcmMyresultComponent,
-    SearchComponent
+    SearchComponent,
+    SectionAccordionComponent
   ],
   imports: [
     BrowserModule,
