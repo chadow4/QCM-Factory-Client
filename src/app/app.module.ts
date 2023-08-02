@@ -29,6 +29,9 @@ import {ModuleComponent} from './pages/student/module/module.component';
 import { QcmMyresultComponent } from './pages/student/qcm-myresult/qcm-myresult.component';
 import { SearchComponent } from './shared/search/search.component';
 import { SectionAccordionComponent } from './shared/section-accordion/section-accordion.component';
+import { SectionCreateComponent } from './pages/prof/section-create/section-create.component';
+import { ResourceCreateComponent } from './pages/prof/resource-create/resource-create.component';
+import { ResourceComponent } from './pages/student/resource/resource.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { SectionAccordionComponent } from './shared/section-accordion/section-ac
     ModuleComponent,
     QcmMyresultComponent,
     SearchComponent,
-    SectionAccordionComponent
+    SectionAccordionComponent,
+    SectionCreateComponent,
+    ResourceCreateComponent,
+    ResourceComponent
   ],
   imports: [
     BrowserModule,

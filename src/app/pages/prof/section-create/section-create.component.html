@@ -1,0 +1,23 @@
+<div class="create-questionnaire-form row formCreateQuestionnaire my-3">
+  <div class="d-flex justify-content-center align-items-center">
+    <form class="w-50 pe-2" #sectionF="ngForm" (ngSubmit)="sectionF.form.valid && onSubmit()">
+      <div class="form-title">
+        <h1 class="text-uppercase fw-bold text-center mb-4">Créer une Section</h1>
+      </div>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Nom de la section"
+               [(ngModel)]="sectionForm.name" required
+               class="form-control"
+               #name="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="name.errors && sectionF.submitted">
+        Nom du de la section non renseigné
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success" type="submit">Créer</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="create-ressource-form row formCreateModule my-3">
+  <div class="d-flex justify-content-center align-items-center">
+    <form class="pe-2" #ressourceF="ngForm" (ngSubmit)="ressourceF.form.valid && onSubmit()">
+      <div class="form-title">
+        <h1 class="text-uppercase fw-bold text-center mb-4">Créer une Ressource</h1>
+      </div>
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Nom de la Ressource"
+               [(ngModel)]="ressourceForm.name" required
+               class="form-control"
+               #name="ngModel">
+      </div>
+      <div class="alert alert-danger p-2 animate__animated animate__fadeIn"
+           role="alert"
+           *ngIf="name.errors && ressourceF.submitted">
+        Nom de la Ressource non renseigné
+      </div>
+      <div class="form-group">
+        <ckeditor [editor]="Editor" [config]="{
+          placeholder: 'Type your content here...'
+        }" [(ngModel)]="ressourceForm.content"
+                  name="content" #content="ngModel"></ckeditor>
+      </div>
+      <div class="form-group text-center mt-2">
+        <button class="btn btn-success" type="submit">Créer</button>
+      </div>
+    </form>
+  </div>
+</div>
