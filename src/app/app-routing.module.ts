@@ -24,6 +24,8 @@ import {QcmNotFinishedGuard} from "./guard/qcmNotFinished-guard";
 import {SectionCreateComponent} from "./pages/prof/section-create/section-create.component";
 import {ResourceCreateComponent} from "./pages/prof/resource-create/resource-create.component";
 import {ResourceComponent} from "./pages/student/resource/resource.component";
+import {QcmNotStarted} from "./guard/qcmNotStarted";
+import {QcmAlreadyResponded} from "./guard/qcmAlreadyResponded";
 
 const routes: Routes = [
   {
@@ -94,7 +96,7 @@ const routes: Routes = [
   {
     path: 'qcm/:id', // a revoir
     component: QcmComponent,
-    canActivate: [QcmFinishedGuard, ConnectedGuard, StudentGuard]
+    canActivate: [QcmFinishedGuard, QcmNotStarted, QcmAlreadyResponded, ConnectedGuard, StudentGuard]
   },
   {
     path: 'qcm/:id/results', // a revoir

@@ -18,7 +18,8 @@
         <div class="card-body">
           <h5 class="card-title">{{ qcm.name }}</h5>
           <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
-          <a *ngIf="qcm.isOpen" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Faire Qcm</a>
+          <a *ngIf="qcm.isOpen && !isResponded(qcm.id)" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Faire Qcm</a>
+          <a *ngIf="qcm.isOpen && isResponded(qcm.id)"class="btn btn-primary">En attente de résultat</a>
           <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id,'myresult']" class="btn btn-primary">Voir vos résultat</a>
         </div>
       </div>
