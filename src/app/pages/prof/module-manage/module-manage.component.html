@@ -1,45 +1,48 @@
-<div class="container-fluid">
+<div class="container">
   <div *ngIf="module" class="row align-items-center justify-content-center text-center p-0 p-md-5">
     <h1>Gestion du Module : <span class="fw-bold">{{module.name}}</span></h1>
     <h2 class="badge bg-info p-2 col-auto">Responsable : <span
       class="fw-bold">{{module.author.firstname}} {{module.author.lastname}}</span></h2>
 
-    <section class="list-of-sections row align-items-center justify-content-center flex-column my-4">
-      <h3>Liste des Sections :</h3>
+    <section class="row row-cols-1 align-items-center justify-content-center flex-column my-4 p-5">
+      <h3 class="my-5">Liste des Sections :</h3>
       <ng-container *ngIf="module.sections.length != 0 else sectionsNotFound">
-        <div class="col-12 col-md-6 my-4">
+        <div class="col">
           <app-section-accordion *ngFor="let section of module.sections" [section]="section"></app-section-accordion>
         </div>
       </ng-container>
       <ng-template #sectionsNotFound>
-        <p class="text-dark m-0 badge bg-info col-auto p-2">Aucune Section n'a été trouvée pour ce Module</p>
+        <p class="text-dark m-0 badge bg-warning col-auto p-2">Aucune Section n'a été trouvée pour ce Module</p>
       </ng-template>
-      <a [routerLink]="['/section',module.id,'create']" class="btn btn-primary col-auto">Créer une section</a>
+      <a [routerLink]="['/section',module.id,'create']" class="btn btn-primary col-auto my-5">Créer une section</a>
     </section>
 
 
 
-      <section class="list-of-qcms row align-items-center justify-content-center flex-column my-4">
-        <h3>Liste des Qcms : </h3>
+      <section class="row align-items-center justify-content-center flex-column my-4">
+        <h3 class="mt-5 my-5">Liste des Qcms : </h3>
         <ng-container *ngIf="module.questionnaire.length != 0 else qcmNotFound">
-          <div class="col my-4" *ngFor="let qcm of module.questionnaire">
-            <div class="card m-3">
-              <div class="card-body">
-                <h5 class="card-title">{{ qcm.name }}</h5>
-                <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
-                <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'results']" class="btn btn-primary">Voir le
-                  résultat</a>
-                <a *ngIf="!qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'manage']" class="btn btn-primary">Gérer</a>
+          <div class="row row-cols-1 row-cols-md-2 g-5 px-5">
+
+            <div class="col" *ngFor="let qcm of module.questionnaire">
+              <div class="card m-3">
+                <div class="card-body">
+                  <h5 class="card-title">{{ qcm.name }}</h5>
+                  <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
+                  <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'results']" class="btn btn-primary">Voir le
+                    résultat</a>
+                  <a *ngIf="!qcm.isFinished" [routerLink]="['/qcm', qcm.id, 'manage']" class="btn btn-primary">Gérer</a>
+                </div>
               </div>
             </div>
           </div>
         </ng-container>
         <ng-template #qcmNotFound>
-          <p class="text-dark m-0 badge bg-info col-auto p-2">Aucun qcm n'a été trouvé pour ce Module</p>
+          <p class="text-dark m-0 badge bg-warning col-auto p-2">Aucun qcm n'a été trouvé pour ce Module</p>
 
         </ng-template>
 
-        <a [routerLink]="['/qcm',module.id,'create']" class="btn btn-primary col-auto">Créer un QCM</a>
+        <a [routerLink]="['/qcm',module.id,'create']" class="btn btn-primary col-auto my-5">Créer un QCM</a>
 
       </section>
 

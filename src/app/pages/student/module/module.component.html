@@ -3,28 +3,45 @@
     <h1>Nom du Module : <span class="fw-bold">{{module.name}}</span></h1>
     <h2 class="badge bg-info p-2 col-auto">Responsable : <span
       class="fw-bold">{{module.author.firstname}} {{module.author.lastname}}</span></h2>
-    <h3>Sections: </h3>
-    <div *ngIf="module.sections.length; else notFoundSection">
-
+    <section class="row row-cols-1 align-items-center justify-content-center flex-column my-4 p-5">
+      <h3>Liste des Sections :</h3>
+      <ng-container *ngIf="module.sections.length != 0 else sectionsNotFound">
+        <div class="col-12">
+          <app-section-accordion *ngFor="let section of module.sections let i = index" [index]="i" [section]="section"></app-section-accordion>
+        </div>
+      </ng-container>
+      <ng-template #sectionsNotFound>
+        <p class="text-dark m-0 badge bg-info col-auto p-2">Aucune Section n'a été trouvée pour ce Module</p>
+      </ng-template>
+    </section>
     </div>
-    <h3>Liste des Questionnaires : </h3>
-  </div>
 
-  <div *ngIf="module?.questionnaire?.length; else notfound"
-       class="row text-center align-items-center justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-3">
+  <section class="row align-items-center justify-content-center flex-column">
+    <h3 class="text-center">Liste des Qcms : </h3>
+    <ng-container *ngIf="module?.questionnaire?.length else qcmNotFound">
+      <div class="row row-cols-1 row-cols-md-2 g-5 px-5">
 
-    <div class="col" *ngFor="let qcm of module.questionnaire">
-      <div *ngIf="qcm.isOpen || qcm.isFinished" class="card m-3">
-        <div class="card-body">
-          <h5 class="card-title">{{ qcm.name }}</h5>
-          <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
-          <a *ngIf="qcm.isOpen && !isResponded(qcm.id)" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Faire Qcm</a>
-          <a *ngIf="qcm.isOpen && isResponded(qcm.id)"class="btn btn-primary">En attente de résultat</a>
-          <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id,'myresult']" class="btn btn-primary">Voir vos résultat</a>
+        <div class="col" *ngFor="let qcm of module?.questionnaire">
+          <div *ngIf="qcm.isOpen || qcm.isFinished" class="card m-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ qcm.name }}</h5>
+              <p class="card-text">Ouvert : {{ qcm.isOpen }}</p>
+              <a *ngIf="qcm.isOpen && !isResponded(qcm.id)" [routerLink]="['/qcm', qcm.id]" class="btn btn-primary">Faire Qcm</a>
+              <a *ngIf="qcm.isOpen && isResponded(qcm.id)"class="btn btn-primary">En attente de résultat</a>
+              <a *ngIf="qcm.isFinished" [routerLink]="['/qcm', qcm.id,'myresult']" class="btn btn-primary">Voir vos résultat</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </ng-container>
+    <ng-template #qcmNotFound>
+      <p class="text-dark m-0 badge bg-info col-auto p-2">Aucun qcm n'a été trouvé pour ce Module</p>
+
+    </ng-template>
+
+
+  </section>
+
 
   <ng-template #notfound>
     <p class="text-info text-center">Aucun QCM n'a été trouvé pour ce Module</p>

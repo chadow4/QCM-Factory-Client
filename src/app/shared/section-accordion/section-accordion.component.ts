@@ -14,6 +14,8 @@ export class SectionAccordionComponent implements OnInit {
 
   @Input()
   section!: SectionDto;
+  @Input()
+  index!: number;
   selectedFile!: File;
   isProf: boolean = false;
 

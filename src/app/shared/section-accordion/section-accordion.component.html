@@ -1,16 +1,16 @@
-<div class="accordion accordion-flush border border-5" id="accordionFlushExample">
+<div class="accordion accordion-flush border border-5 my-5" id="accordionFlushExample">
   <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
+    <h2 class="accordion-header" id="flush-heading{{index}}">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         {{section.name}}
       </button>
     </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-heading"
          data-bs-parent="#accordionFlushExample">
       <div class="accordion-body row gap-5">
         <div>
-          <h2>Liste des ressources</h2>
+          <h2>Liste des ressources :</h2>
           <ng-container *ngIf="section.resources.length > 0 else noResources">
             <div class="d-flex align-items-center justify-content-center" *ngFor="let resource of section.resources">
               <div
@@ -31,7 +31,7 @@
           </button>
         </div>
         <div>
-          <h2>Liste des fichiers: </h2>
+          <h2>Liste des fichiers : </h2>
           <ng-container *ngIf="section.files.length > 0 else noFiles">
             <div class="d-flex align-items-center justify-content-center" *ngFor="let file of section.files">
               <div

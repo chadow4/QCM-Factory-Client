@@ -1,6 +1,6 @@
 <div class="create-questionnaire-form row formCreateQuestionnaire my-3">
   <div class="d-flex justify-content-center align-items-center">
-    <form class="w-50 pe-2" #sectionF="ngForm" (ngSubmit)="sectionF.form.valid && onSubmit()">
+    <form class="pe-2" #sectionF="ngForm" (ngSubmit)="sectionF.form.valid && onSubmit()">
       <div class="form-title">
         <h1 class="text-uppercase fw-bold text-center mb-4">Créer une Section</h1>
       </div>
@@ -15,7 +15,7 @@
            *ngIf="name.errors && sectionF.submitted">
         Nom du de la section non renseigné
       </div>
-      <div class="form-group text-center">
+      <div class="form-group text-center mt-2">
         <button class="btn btn-success" type="submit">Créer</button>
       </div>
     </form>
